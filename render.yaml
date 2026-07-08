@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: needan-ai
+    plan: free
+    runtime: docker
+    envVars:
+      - key: PORT
+        value: 10000
