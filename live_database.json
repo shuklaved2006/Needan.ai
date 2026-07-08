@@ -30,7 +30,7 @@
                 "Hepatitis B & C Screening",
                 "Thyroid Profile (T3, T4, TSH)"
             ],
-            "daily_qr_token": "QR_PHC_BISRAK_2026-07-08_7369BC84"
+            "daily_qr_token": "QR_PHC_BISRAK_2026-07-09_B955314F"
         },
         {
             "id": "PHC_DANKAUR",
@@ -62,7 +62,7 @@
                 "Hepatitis B & C Screening",
                 "Thyroid Profile (T3, T4, TSH)"
             ],
-            "daily_qr_token": "QR_PHC_DANKAUR_2026-07-08_61AACE38"
+            "daily_qr_token": "QR_PHC_DANKAUR_2026-07-09_017E5BC8"
         },
         {
             "id": "CHC_BHANGEL",
@@ -94,7 +94,7 @@
                 "Hepatitis B & C Screening",
                 "Thyroid Profile (T3, T4, TSH)"
             ],
-            "daily_qr_token": "QR_CHC_BHANGEL_2026-07-08_53652548"
+            "daily_qr_token": "QR_CHC_BHANGEL_2026-07-09_66CFE857"
         },
         {
             "id": "CHC_DADRI",
@@ -126,7 +126,7 @@
                 "Hepatitis B & C Screening",
                 "Thyroid Profile (T3, T4, TSH)"
             ],
-            "daily_qr_token": "QR_CHC_DADRI_2026-07-08_F9B21A5E"
+            "daily_qr_token": "QR_CHC_DADRI_2026-07-09_71D7964F"
         }
     ],
     "users": [
@@ -209,6 +209,22 @@
             "phone": "9988770009",
             "contact": "9988770009",
             "email": "ritunair@example.com"
+        },
+        {
+            "name": "vedang",
+            "role": "Patient",
+            "phone": "9192123456",
+            "contact": "9192123456",
+            "email": "",
+            "id": "USR_6C501604"
+        },
+        {
+            "name": "vedang",
+            "role": "Patient",
+            "phone": "9192123456",
+            "contact": "9192123456",
+            "email": "",
+            "id": "USR_2E4143F0"
         }
     ],
     "staff": [
@@ -1043,7 +1059,7 @@
             "generic_name": "Amlodipine",
             "route": "Oral",
             "strength": "5mg",
-            "quantity": 90,
+            "quantity": 88,
             "unit": "tablets",
             "min_required": 80,
             "status": "Essential",
@@ -4187,5 +4203,17 @@
             "Hepatitis B & C Screening",
             "Thyroid Profile (T3, T4, TSH)"
         ]
-    }
+    },
+    "dispensing_logs": [
+        {
+            "id": "DISP_3282CCF6",
+            "patient_name": "vedang",
+            "phone": "8448957020",
+            "medication_id": "INV_BSK_PHC_004",
+            "medication_name": "Amlodipine (Oral, 5mg)",
+            "facility_id": "PHC_BISRAK",
+            "quantity": 2,
+            "date": "2026-07-09 01:11:10"
+        }
+    ]
 }
