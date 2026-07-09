@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>District Care - Health Network Patient Portal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="patient.css">
+</head>
+<body>
+    <div class="portal-container">
+        <!-- Premium Modern Header -->
+        <header class="portal-header">
+            <div class="header-logo">
+                <div class="logo-wrapper">
+                    <i data-lucide="heart-pulse" class="pulse-animation"></i>
+                </div>
+                <div class="logo-text">
+                    <h2>DistrictCare</h2>
+                    <span>Patient & Citizen Portal</span>
+                </div>
+            </div>
+            
+            <!-- Accessible Navigation -->
+            <nav class="portal-nav">
+                <button class="nav-item active" data-tab="dashboard">
+                    <i data-lucide="layout-grid"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-tab="facilities">
+                    <i data-lucide="building-2"></i>
+                    <span>Find Health Facility</span>
+                </button>
+                <button class="nav-item" data-tab="registry">
+                    <i data-lucide="badge-check"></i>
+                    <span>Check Registration</span>
+                </button>
+            </nav>
+
+            <div class="header-badge">
+                <span class="role-badge">
+                    <span class="pulse-dot"></span>
+                    X-Active-Role: Patient
+                </span>
+            </div>
+        </header>
+
+        <!-- Toast Notifications Container -->
+        <div id="toast-container" class="toast-container"></div>
+
+        <!-- Main Content Wrapper -->
+        <main class="portal-main">
+            
+            <!-- 1. DASHBOARD VIEW -->
+            <section id="tab-dashboard" class="tab-view active">
+                <div class="hero-banner">
+                    <div class="hero-content">
+                        <h1>Your Gateway to District Health Services</h1>
+                        <p>Real-time updates on community health resources, facility availability, and enrollment confirmation.</p>
+                    </div>
+                </div>
+
+                <!-- Network Metrics Grid -->
+                <div class="dashboard-grid">
+                    <div class="metric-card">
+                        <div class="card-icon bg-blue"><i data-lucide="shield-check"></i></div>
+                        <div class="card-info">
+                            <h3>Active Health Centers</h3>
+                            <div class="card-val" id="metric-centers">--</div>
+                            <span class="card-lbl">Primary & Community Centers</span>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="card-icon bg-emerald"><i data-lucide="bed"></i></div>
+                        <div class="card-info">
+                            <h3>Beds Status</h3>
+                            <div class="card-val" id="metric-beds">-- / --</div>
+                            <span class="card-lbl" id="metric-beds-label">Total Occupied Beds</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="card-icon bg-indigo"><i data-lucide="clipboard-list"></i></div>
+                        <div class="card-info">
+                            <h3>Active Admissions</h3>
+                            <div class="card-val" id="metric-admissions">--</div>
+                            <span class="card-lbl">Patients currently receiving care</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="split-layout">
+                    <!-- Bed Occupancy Chart Card -->
+                    <div class="content-card chart-card">
+                        <div class="card-header">
+                            <i data-lucide="activity"></i>
+                            <h3>Bed Utilization Rate</h3>
+                        </div>
+                        <div class="card-body ring-flex">
+                            <div class="progress-ring-box">
+                                <svg class="ring-svg" width="160" height="160">
+                                    <circle class="ring-bg" stroke="#f1f5f9" stroke-width="12" fill="transparent" r="66" cx="80" cy="80"/>
+                                    <circle class="ring-bar" id="occupancy-ring" stroke="var(--primary-emerald)" stroke-width="12" fill="transparent" r="66" cx="80" cy="80" stroke-linecap="round"/>
+                                </svg>
+                                <div class="ring-info">
+                                    <span class="ring-percentage" id="occupancy-pct">0%</span>
+                                    <span class="ring-lbl">Beds Filled</span>
+                                </div>
+                            </div>
+                            <div class="utilization-legend">
+                                <div class="legend-item"><span class="dot bg-emerald"></span> Occupied Beds: <strong id="lbl-occupied">0</strong></div>
+                                <div class="legend-item"><span class="dot bg-gray"></span> Available Beds: <strong id="lbl-available">0</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Help Guide -->
+                    <div class="content-card guide-card">
+                        <div class="card-header">
+                            <i data-lucide="help-circle"></i>
+                            <h3>Citizen Resources & Information</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="guide-list">
+                                <li>
+                                    <div class="guide-step-icon"><i data-lucide="search"></i></div>
+                                    <div class="guide-text">
+                                        <h4>Find Emergency & General Ward Beds</h4>
+                                        <p>Check the real-time bed counts at nearby Primary Health Centres (PHCs) and Community Health Centres (CHCs).</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="guide-step-icon"><i data-lucide="test-tube-2"></i></div>
+                                    <div class="guide-text">
+                                        <h4>Diagnostic Test Facilities</h4>
+                                        <p>Filter facilities by available diagnostic tests like ECG, X-Ray, Blood routines, and Ultrasound.</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="guide-step-icon"><i data-lucide="user-check"></i></div>
+                                    <div class="guide-text">
+                                        <h4>Verify Patient Registration</h4>
+                                        <p>Confirm your enrollment records instantly using your unique User ID to verify details.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. FIND HEALTH FACILITY VIEW -->
+            <section id="tab-facilities" class="tab-view">
+                <div class="section-title-area">
+                    <h2>District Health Facilities Directory</h2>
+                    <p>Locate active community health centres and find real-time capabilities</p>
+                </div>
+
+                <!-- Filters and Search Bar -->
+                <div class="search-filter-card">
+                    <div class="search-input-wrapper">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="facility-search-input" placeholder="Search facilities by name..." oninput="handleFacilityFilterChange()">
+                    </div>
+                    <div class="filter-dropdowns">
+                        <div class="select-wrapper">
+                            <i data-lucide="building"></i>
+                            <select id="facility-type-filter" onchange="handleFacilityFilterChange()">
+                                <option value="all">All Facility Types</option>
+                                <option value="PHC">Primary Health Centre (PHC)</option>
+                                <option value="CHC">Community Health Centre (CHC)</option>
+                            </select>
+                        </div>
+                        <div class="select-wrapper">
+                            <i data-lucide="stethoscope"></i>
+                            <select id="facility-test-filter" onchange="handleFacilityFilterChange()">
+                                <option value="all">All Diagnostic Tests</option>
+                                <!-- Populate dynamically -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Split Directory and Canvas Map -->
+                <div class="facilities-layout">
+                    <!-- Cards List -->
+                    <div class="facilities-list-wrapper">
+                        <div id="facilities-list" class="facilities-grid">
+                            <!-- Populated Dynamically -->
+                        </div>
+                        <!-- Empty State for Facilities -->
+                        <div id="facilities-empty-state" class="empty-state hidden">
+                            <div class="empty-icon"><i data-lucide="search-code"></i></div>
+                            <h3>No Health Facilities Found</h3>
+                            <p>Try adjusting your search filters or check your network connection if the system failed to retrieve updates.</p>
+                            <button class="retry-btn" onclick="fetchFacilities()"><i data-lucide="refresh-cw"></i> Retry Query</button>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Coordinates Map -->
+                    <div class="content-card map-card">
+                        <div class="card-header">
+                            <i data-lucide="map-pin"></i>
+                            <h3>District Coordinates Map Plot</h3>
+                        </div>
+                        <div class="card-body relative-map">
+                            <canvas id="coordinates-map" width="400" height="400"></canvas>
+                            <div class="map-hint">
+                                <i data-lucide="info"></i>
+                                <span>Plotted relatively using GPS latitude & longitude coordinates. Hover over points to view details.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. PATIENT REGISTRY CHECK VIEW -->
+            <section id="tab-registry" class="tab-view">
+                <div class="section-title-area">
+                    <h2>Verify Patient Registration</h2>
+                    <p>Search and confirm patient registration data with the district care network registry.</p>
+                </div>
+
+                <div class="registry-search-box">
+                    <div class="search-input-wrapper large-search">
+                        <i data-lucide="user"></i>
+                        <input type="text" id="registry-search-input" placeholder="Enter Patient Name or ID (e.g. USR_PATIENT1)...">
+                        <button class="verify-btn" onclick="checkPatientRegistry()">Confirm Enrollment</button>
+                    </div>
+                </div>
+
+                <div class="registry-results-wrapper">
+                    <!-- Loading skeleton -->
+                    <div id="registry-loading" class="skeleton-card hidden">
+                        <div class="skeleton-line title"></div>
+                        <div class="skeleton-line desc"></div>
+                        <div class="skeleton-line text"></div>
+                    </div>
+
+                    <!-- Empty state/no records search prompt -->
+                    <div id="registry-prompt-state" class="empty-state">
+                        <div class="empty-icon"><i data-lucide="folder-search"></i></div>
+                        <h3>Awaiting Verification Request</h3>
+                        <p>Input a Patient ID or Full Name above to query the active district health databases and verify registration status.</p>
+                    </div>
+
+                    <!-- Verification Success Card -->
+                    <div id="registry-success-card" class="result-card success-card hidden">
+                        <div class="card-status-badge success">
+                            <i data-lucide="check-circle-2"></i> Active Registration Verified
+                        </div>
+                        <div class="card-details">
+                            <div class="detail-row">
+                                <span class="lbl">Patient Name</span>
+                                <strong class="val" id="reg-name">--</strong>
+                            </div>
+                            <div class="detail-row">
+                                <span class="lbl">Registration ID</span>
+                                <strong class="val code-font" id="reg-id">--</strong>
+                            </div>
+                            <div class="detail-row">
+                                <span class="lbl">Network Role</span>
+                                <span class="val badge-role" id="reg-role">--</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="lbl">Contact Number</span>
+                                <span class="val" id="reg-contact">--</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="lbl">Email Address</span>
+                                <span class="val" id="reg-email">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Verification Failed Empty State -->
+                    <div id="registry-failed-state" class="empty-state error-state hidden">
+                        <div class="empty-icon text-error"><i data-lucide="user-x"></i></div>
+                        <h3>Record Not Found</h3>
+                        <p>No verified citizen or patient records found matching that ID or name. Please confirm the identifier or request staff registration at the facility.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Script connection -->
+    <script src="patient.js"></script>
+</body>
+</html>
