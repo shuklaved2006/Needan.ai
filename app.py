@@ -2,19 +2,19 @@ import os
 import uuid
 import math
 from datetime import datetime
-from flask import Flask, request, jsonify, abort
+from flask import Flask, request, jsonify, abort, send_from_directory
 from werkzeug.exceptions import HTTPException
 import db_io
 
-import os
-static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
-app = Flask(__name__, static_folder=static_dir, static_url_path='')
-
-
+# This configures Flask to treat your root folder as both the template and static files directory
+root_dir = os.path.dirname(os.path.abspath(__file__))
+app = Flask(__name__, static_folder=root_dir, static_url_path='')
 
 @app.route('/')
 def home():
-    return "<h1>Healthcare Dashboard Server is Running Successfully!</h1>"
+    # This serves your index.html directly from the root directory to the user
+    return send_from_directory(root_dir, 'index.html')
+
 @app.errorhandler(HTTPException)
 def handle_exception(e):
     """Return JSON instead of HTML for HTTP errors."""
