@@ -10,6 +10,11 @@ import os
 static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
 app = Flask(__name__, static_folder=static_dir, static_url_path='')
 
+
+
+@app.route('/')
+def home():
+    return "<h1>Healthcare Dashboard Server is Running Successfully!</h1>"
 @app.errorhandler(HTTPException)
 def handle_exception(e):
     """Return JSON instead of HTML for HTTP errors."""
